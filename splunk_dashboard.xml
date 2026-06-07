@@ -1,0 +1,48 @@
+<dashboard theme="dark">
+  <label>SOC Triage Pipeline - Behavioral Analytics Monitor</label>
+  <description>Monitorización pasiva de telemetría y detección de automatización basada en varianza temporal.</description>
+  
+  <row>
+    <panel>
+      <single>
+        <title>Total Events Processed</title>
+        <search><query>| makeresults | eval count=2</query></search>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Max Risk Score Detected</title>
+        <search><query>| makeresults | eval risk=97.00</query></search>
+        <option name="rangeColors">["0x53a051","0xf8be34","0xdc4e41"]</option>
+        <option name="rangeValues">[39,69]</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Target Incident Host</title>
+        <search><query>| makeresults | eval host="185.220.101.5"</query></search>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <table>
+        <title>Active Triage Findings (MITRE ATT&amp;CK T1110)</title>
+        <search>
+          <query>
+            | makeresults 
+            | eval _time="2026-06-04T18:40:02Z", source_ip="185.220.101.5", risk_score=97.00, classification="HIGH_RISK", mitre_technique="T1110"
+            | append [| makeresults | eval _time="2026-06-04T18:40:01Z", source_ip="185.220.101.5", risk_score=70.00, classification="SUSPICIOUS", mitre_technique="T1110"]
+            | fields _time, source_ip, risk_score, classification, mitre_technique
+          </query>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

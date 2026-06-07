@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Splunk Enterprise - SOC Triage Pipeline</title>
+    <style>
+        body {
+            background-color: #111111;
+            color: #eeeeee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .splunk-header {
+            background-color: #1e1e1e;
+            padding: 10px 20px;
+            border-bottom: 3px solid #222222;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .splunk-logo {
+            color: #ff7900;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        .splunk-logo span {
+            color: #ffffff;
+            font-weight: normal;
+        }
+        .dashboard-title {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        .dashboard-desc {
+            font-size: 13px;
+            color: #aaaaaa;
+            margin-bottom: 25px;
+        }
+        .kpi-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .kpi-card {
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 4px;
+            padding: 15px;
+            flex: 1;
+            text-align: center;
+        }
+        .kpi-title {
+            font-size: 12px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        .kpi-value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .kpi-critical {
+            color: #d9534f;
+            background-color: #2a1818;
+            border: 1px solid #d9534f;
+        }
+        .table-container {
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        .table-title {
+            font-size: 14px;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            text-align: left;
+            background-color: #252525;
+            color: #ffffff;
+            padding: 10px;
+            border-bottom: 2px solid #333333;
+        }
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #2d2d2d;
+            color: #cccccc;
+        }
+        tr:hover {
+            background-color: #252525;
+        }
+        .badge-critical {
+            background-color: #d9534f;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .badge-suspicious {
+            background-color: #f0ad4e;
+            color: black;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="splunk-header">
+        <div class="splunk-logo">splunk&gt; <span>enterprise</span></div>
+        <div style="font-size: 12px; color: #888888;">App: Search & Reporting</div>
+    </div>
+
+    <div class="dashboard-title">SOC Triage Pipeline - Behavioral Analytics Monitor</div>
+    <div class="dashboard-desc">Monitorización pasiva de telemetría y detección de automatización basada en varianza temporal.</div>
+
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-title">Total Events Processed</div>
+            <div class="kpi-value" style="color: #5bc0de;">2</div>
+        </div>
+        <div class="kpi-card kpi-critical">
+            <div class="kpi-title" style="color: #ff9999;">Max Risk Score Detected</div>
+            <div class="kpi-value">97.00</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Target Incident Host</div>
+            <div class="kpi-value" style="color: #ffffff; font-size: 24px; padding-top: 8px;">185.220.101.5</div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-title">Active Triage Findings (MITRE ATT&CK T1110 - Brute Force)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>_time</th>
+                    <th>source_ip</th>
+                    <th>risk_score</th>
+                    <th>classification</th>
+                    <th>mitre_technique</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-06-07 17:30:01</td>
+                    <td>185.220.101.5</td>
+                    <td><span class="badge-critical">97.00</span></td>
+                    <td style="color: #d9534f; font-weight: bold;">HIGH_RISK</td>
+                    <td>T1110</td>
+                </tr>
+                <tr>
+                    <td>2026-06-07 17:30:00</td>
+                    <td>185.220.101.5</td>
+                    <td><span class="badge-suspicious">70.00</span></td>
+                    <td style="color: #f0ad4e; font-weight: bold;">SUSPICIOUS</td>
+                    <td>T1110</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
