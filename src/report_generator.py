@@ -27,7 +27,7 @@ class TelemetryParser:
             source_ips.add(event.get("source_ip"))
             risk_scores.append(event.get("risk_score", 0.0))
             mitre_techniques.add(event.get("mitre_technique"))
-            timestamps.append(event.get("timestamp"))  # CORREGIDO: Uso correto de .append() para listas
+            timestamps.append(event.get("timestamp"))  
             classifications.add(event.get("classification"))
 
         # Calculate real mathematical indicators (No static fallbacks)
@@ -56,7 +56,7 @@ class TelemetryParser:
 if __name__ == "__main__":
     print("[*] Initiating Lab 4 Telemetry Parser Validation...")
 
-    # Mocking real output coming straight from our Lab 3 Triage Pipeline
+
     mock_lab3_output = [
         {
             "timestamp": "2026-06-04T18:40:01Z",
@@ -77,7 +77,6 @@ if __name__ == "__main__":
     ]
 
     try:
-        # Initialize the engineering parser
         parser = TelemetryParser(telemetry_data=mock_lab3_output)
         structured_payload = parser.process_incidents()
 
