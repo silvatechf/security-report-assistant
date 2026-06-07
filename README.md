@@ -31,8 +31,10 @@ Para demostrar cómo este pipeline de automatización se integra de forma nativa
 
 A continuación se muestra el resultado real del pipeline interactuando con el entorno de monitorización en tiempo real, reflejando el procesamiento de un ataque automatizado de fuerza bruta de baja entropía temporal:
 
-![Splunk Security Monitor Dashboard](assets/splunk_monitor.html) 
-*(Nota: Inserta aquí el archivo de la captura de pantalla que acabas de realizar salvándola como assets/splunk_monitor.png o similar)*
+![Splunk Security Monitor Dashboard](assets/splk2.png) 
+
+
+*(Nota: Mock de visualización SIEM)*
 
 ### Componentes de la Interfaz Implementada:
 * **Métricas Clave (KPIs):** Contador de eventos totales ingeridos en la ventana de tiempo, resalte visual del score de riesgo crítico (**97.00/100**) e identificación del host objetivo bajo ataque (`185.220.101.5`).
